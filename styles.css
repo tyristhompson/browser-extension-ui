@@ -6,6 +6,10 @@ body {
   font-family: Noto Sans, Arial;
 }
 
+p {
+  margin: 0;
+}
+
 header {
   background-color: hsl(226, 25%, 17%);
   color: white;
@@ -54,15 +58,111 @@ nav {
 }
 
 main {
-  background-color: lightblue; 
+  /*background-color: lightblue; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   height: 500px;
 
 }
 
-.main-content div {
-  background-color: lightcoral;
-  height: 100px;
-  width: 200px;
+.extension-container {
+  height: 120px;
+  padding: 12px;
+  background-color: hsl(226, 25%, 17%);
+  border: 1px solid hsl(225, 23%, 24%);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.extension-description {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.extension-description img {
+  width: 50px;
+}
+
+.description-container {
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.extension-name {
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.extension-text {
+  font-size: 13px;
+  color: hsl(0, 0%, 78%);
+}
+
+.extension-settings {
+ /* background-color: black; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.extension-settings button {
+  color: hsl(217, 61%, 90%);
+  font-weight: 500;
+  background-color: hsl(226, 25%, 17%);
+  border: 1px solid hsl(225, 23%, 24%);
+  border-radius: 14px;
+  padding: 6px 10px;
+}
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 30px; /* Adjust as needed */
+  height: 16px; /* Adjust as needed */
+}
+
+.toggle input {
+  opacity: 0; /* Hide the default checkbox */
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc; /* Off state background color */
+  transition: 0.4s; /* Smooth transition for changes */
+  border-radius: 34px; /* Rounded corners for the track */
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px; /* Size of the knob */
+  width: 14px; /* Size of the knob */
+  left: 2px; /* Initial position of the knob */
+  bottom: 1px;
+  background-color: white; /* Knob color */
+  transition: 0.4s;
+  border-radius: 50%; /* Make the knob circular */
+}
+
+input:checked + .slider {
+  background-color: hsl(3, 77%, 44%); /* On state background color */
+}
+
+input:checked + .slider:before {
+  transform: translateX(12px); /* Move knob to the right when checked */
+}
+
