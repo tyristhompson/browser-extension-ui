@@ -1,9 +1,33 @@
 body {
   height: 1000px;
-  background: linear-gradient(180deg, #040918 0%, #091540 100%);
+  background: var(--lighting);
   padding: 12px 20px 12px 20px;
-  color: hsl(0, 0%, 93%);
+  color: var(--text-color);
   font-family: Noto Sans, Arial;
+}
+
+body.dark {
+  --lighting: linear-gradient(180deg, #040918 0%, #091540 100%);
+  --text-color: hsl(0, 0%, 93%);
+  --text-color-2: hsl(217, 61%, 90%);
+  --active-text-color:hsl(227, 75%, 14%);
+  --active-state-color: hsl(3, 86%, 64%);
+  --container-bg-1: hsl(226, 25%, 17%);
+  --container-bg-2: hsl(225, 23%, 24%);
+  --button-bg-color: hsl(226, 11%, 37%);
+  --toggle-bg-color: hsl(0, 0%, 78%);
+}
+
+body.light {
+  --lighting: linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%);
+  --text-color: hsl(227, 75%, 14%);
+  --text-color-2: hsl(227, 75%, 14%);
+  --active-text-color: hsl(0, 0%, 93%);
+  --active-state-color: hsl(3, 77%, 44%);
+  --container-bg-1: hsl(200, 60%, 99%);
+  --container-bg-2: hsl(200, 60%, 99%);
+  --button-bg-color: hsl(217, 61%, 90%);
+  --toggle-bg-color: hsl(217, 61%, 90%);
 }
 
 p {
@@ -11,7 +35,7 @@ p {
 }
 
 header {
-  background-color: hsl(226, 25%, 17%);
+  background-color: var(--container-bg-1);
   color: white;
   margin-bottom: 12px;
   display: flex;
@@ -22,8 +46,8 @@ header {
 }
 
 .lighting-mode {
-  background-color: hsl(226, 11%, 37%);
-  border: none;
+  background-color: var(--button-bg-color);
+  border: 1px solid var(--button-bg-color);
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -49,12 +73,13 @@ nav {
 }
 
 .button-filters-container button {
-  border: none;
+  border: 1px solid var(--container-bg-2);
   border-radius: 16px;
   padding: 6px 12px 6px 12px;
   margin-left: 4px;
-  background-color: hsl(225, 23%, 24%);
-  color: hsl(0, 0%, 93%);
+  background-color: var(--container-bg-2);
+  color: var(--text-color);
+  transition: 0.15s;
 }
 
 main {
@@ -68,8 +93,8 @@ main {
 .extension-container {
   height: 120px;
   padding: 12px;
-  background-color: hsl(226, 25%, 17%);
-  border: 1px solid hsl(225, 23%, 24%);
+  background-color: var(--container-bg-1);
+  border: 1px solid var(--container-bg-2);
   border-radius: 14px;
   display: flex;
   flex-direction: column;
@@ -101,7 +126,7 @@ main {
 
 .extension-text {
   font-size: 13px;
-  color: hsl(0, 0%, 78%);
+  color: var(--text-color);
 }
 
 .extension-settings {
@@ -113,12 +138,13 @@ main {
 }
 
 .extension-settings button {
-  color: hsl(217, 61%, 90%);
+  color: var(--text-color-2);
   font-weight: 500;
-  background-color: hsl(226, 25%, 17%);
-  border: 1px solid hsl(225, 23%, 24%);
+  background-color: var(--container-bg-1);
+  border: 1px solid var(--container-bg-2);
   border-radius: 14px;
   padding: 6px 10px;
+  transition: 0.15s;
 }
 
 .toggle {
@@ -141,7 +167,7 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc; /* Off state background color */
+  background-color: var(--toggle-bg-color); /* Off state background color */
   transition: 0.4s; /* Smooth transition for changes */
   border-radius: 34px; /* Rounded corners for the track */
 }
@@ -159,10 +185,21 @@ main {
 }
 
 input:checked + .slider {
-  background-color: hsl(3, 77%, 44%); /* On state background color */
+  background-color: var(--active-state-color); /* On state background color */
 }
 
 input:checked + .slider:before {
   transform: translateX(12px); /* Move knob to the right when checked */
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: var(--button-bg-color);
+  border-color: var(--active-state-color);
+}
+
+button:active {
+  background-color: var(--active-state-color);
+  color: var(--active-text-color);
 }
 
