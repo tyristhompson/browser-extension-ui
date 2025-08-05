@@ -3,8 +3,7 @@ const lightButton = document.querySelector('.lighting-mode');
 const allButton = document.querySelector('.all');
 const activeButton = document.querySelector('.active');
 const inactiveButton = document.querySelector('.inactive');
-const removeButtons = document.querySelectorAll('.remove');
-const parent = document.querySelector('.main-content');
+const mainContent = document.querySelector('.main-content');
 
 const activeArray = [];
 const inactiveArray = [];
@@ -35,23 +34,28 @@ async function getExtensions() {
         </label>
       </div>`;
 
-      parent.appendChild(newDiv);
+      mainContent.appendChild(newDiv);
       allArray.push(newDiv);
     };
+
     const extensionToggles = document.querySelectorAll('input');
+    const removeButtons = document.querySelectorAll('.remove');
+
     extensionToggles.forEach(((input) => {
       input.checked == true ? activeArray.push(input.parentElement.parentElement.parentElement) : inactiveArray.push(input.parentElement.parentElement.parentElement)
       input.addEventListener('change', changeActiveToggle)
-    }))
+    }));
+
+    removeButtons.forEach((button) => {
+      button.addEventListener('click', removePressed)
+    });
     
     }
 
    catch (error) {
     console.log(error);
   }
-}
-
-
+};
 
 
 function changeActiveToggle() {
@@ -66,60 +70,33 @@ function changeActiveToggle() {
   }
 
   if(activeButton.classList.contains('pressed') & inactiveArray.includes(container)) {
-    parent.removeChild(container);
+    mainContent.removeChild(container);
   }
   else if(inactiveButton.classList.contains('pressed') & activeArray.includes(container)) {
-    parent.removeChild(container);
+    mainContent.removeChild(container);
   }
  
-}
+};
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function buttonPressed() {
+function filterPressed() {
   const filters = [allButton, activeButton, inactiveButton];
   filters.forEach((button) => {button.classList.remove('pressed')});
   this.classList.toggle('pressed');
 
   if(this == activeButton) {
-    parent.innerHTML = '';
-    activeArray.forEach((element) => parent.appendChild(element));
+    mainContent.innerHTML = '';
+    activeArray.forEach((element) => mainContent.appendChild(element));
   }
   else if(this == inactiveButton) {
-    parent.innerHTML = '';
-    inactiveArray.forEach((element) => parent.appendChild(element));
+    mainContent.innerHTML = '';
+    inactiveArray.forEach((element) => mainContent.appendChild(element));
   }
   else {
-    allArray.forEach((element) => parent.appendChild(element));
+    allArray.forEach((element) => mainContent.appendChild(element));
   }
 };
+
 
 function changeLighting() {
   body.classList.toggle('light');
@@ -132,9 +109,26 @@ function changeLighting() {
   
 };
 
+
+function removePressed() {
+  const container = this.parentElement.parentElement;
+  allArray.splice(allArray.indexOf(container), 1);
+
+  if(activeArray.includes(container)) {
+    activeArray.splice(activeArray.indexOf(container), 1)
+  }
+  else if(inactiveArray.includes(container)) {
+    inactiveArray.splice(inactiveArray.indexOf(container), 1)
+  };
+  
+ mainContent.removeChild(container);
+};
+
+
 getExtensions();
+
 lightButton.addEventListener('click', changeLighting);
-allButton.addEventListener('click', buttonPressed);
-activeButton.addEventListener('click', buttonPressed);
-inactiveButton.addEventListener('click', buttonPressed);
+allButton.addEventListener('click', filterPressed);
+activeButton.addEventListener('click', filterPressed);
+inactiveButton.addEventListener('click', filterPressed);
 

@@ -1,5 +1,7 @@
 body {
-  height: 1000px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   background: var(--lighting);
   padding: 12px 20px 12px 20px;
   color: var(--text-color);
@@ -35,6 +37,7 @@ p {
 }
 
 header {
+  width: 100%;
   background-color: var(--container-bg-1);
   color: white;
   margin-bottom: 12px;
@@ -60,11 +63,17 @@ header {
 }
 
 nav {
-  /*background-color: hsl(3, 86%, 64%);*/
   margin-bottom: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media (max-width: 540px) {
+  nav {
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .nav-title {
@@ -79,19 +88,19 @@ nav {
   margin-left: 4px;
   background-color: var(--container-bg-2);
   color: var(--text-color);
-  transition: 0.15s;
 }
 
 main {
-  /*background-color: lightblue; */
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 280px));
   height: 500px;
-
+  gap: 12px;
+  justify-content: center;
 }
 
 .extension-container {
-  height: 120px;
+  min-height: 130px;
+  max-height: 150px;
   padding: 12px;
   background-color: var(--container-bg-1);
   border: 1px solid var(--container-bg-2);
@@ -100,8 +109,6 @@ main {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin-right: 12px;
-  margin-bottom: 12px;
 }
 
 .extension-description {
@@ -132,7 +139,6 @@ main {
 }
 
 .extension-settings {
- /* background-color: black; */
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -143,10 +149,9 @@ main {
   color: var(--text-color-2);
   font-weight: 500;
   background-color: var(--container-bg-1);
-  border: 1px solid var(--container-bg-2);
+  border: 1px solid var(--toggle-bg-color);
   border-radius: 14px;
   padding: 6px 10px;
-  transition: 0.15s;
 }
 
 .toggle {
@@ -196,9 +201,15 @@ input:checked + .slider:before {
 
 button:hover {
   cursor: pointer;
-  background-color: var(--button-bg-color);
   border-color: var(--active-state-color);
 }
+
+.remove:hover {
+  background-color: var(--active-state-color);
+  border-color: var(--active-state-color);
+  color: var(--active-text-color);
+}
+
 
 button.pressed {
   background-color: var(--active-state-color);
