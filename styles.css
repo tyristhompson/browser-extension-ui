@@ -100,6 +100,8 @@ main {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin-right: 12px;
+  margin-bottom: 12px;
 }
 
 .extension-description {
@@ -198,7 +200,7 @@ button:hover {
   border-color: var(--active-state-color);
 }
 
-button:active {
+button.pressed {
   background-color: var(--active-state-color);
   color: var(--active-text-color);
 }
