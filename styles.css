@@ -1,8 +1,12 @@
+
 body {
-  height: 100vh;
+  min-height: 100vh; 
   display: flex;
   flex-direction: column;
-  background: var(--lighting);
+  background: var(--lighting); 
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   padding: 12px 20px 12px 20px;
   color: var(--text-color);
   font-family: Noto Sans, Arial;
